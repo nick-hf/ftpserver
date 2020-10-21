@@ -1,6 +1,6 @@
-# Should be started with:
-# docker run -ti -p 2121-2130:2121-2130 ftpserver/ftpserver
-FROM alpine:3.12.0
+FROM golang:1.15.3
 EXPOSE 2121-2130
-COPY ftpserver /bin/ftpserver
+COPY . .
+RUN go build
+RUN mv ftpserver /bin/ftpserver
 ENTRYPOINT [ "/bin/ftpserver" ]
